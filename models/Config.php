@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\base\BaseActiveRecord;
 use Yii;
 
 /**
@@ -11,7 +12,7 @@ use Yii;
  * @property string $key
  * @property string $value
  */
-class Config extends \yii\db\ActiveRecord
+class Config extends BaseActiveRecord
 {
     /**
      * @inheritdoc

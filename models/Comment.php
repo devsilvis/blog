@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\base\BaseActiveRecord;
 use Yii;
 
 /**
@@ -20,7 +21,7 @@ use Yii;
  * @property string $created_at
  * @property integer $status
  */
-class Comment extends \yii\db\ActiveRecord
+class Comment extends BaseActiveRecord
 {
     /**
      * @inheritdoc

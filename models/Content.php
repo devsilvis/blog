@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\base\BaseActiveRecord;
 use Yii;
 
 /**
@@ -28,7 +29,7 @@ use Yii;
  * @property string $content_type
  * @property string $template
  */
-class Content extends \yii\db\ActiveRecord
+class Content extends BaseActiveRecord
 {
     /**
      * @inheritdoc

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\base\BaseActiveRecord;
 use Yii;
 
 /**
@@ -11,7 +12,7 @@ use Yii;
  * @property integer $takonomy_id
  * @property integer $content_id
  */
-class CategoryContent extends \yii\db\ActiveRecord
+class CategoryContent extends BaseActiveRecord
 {
     /**
      * @inheritdoc

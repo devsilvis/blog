@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\core\base\BaseActiveRecord;
 use Yii;
 
 /**
@@ -16,7 +17,7 @@ use Yii;
  * @property integer $sort_num
  * @property integer $type
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends BaseActiveRecord
 {
     /**
      * @inheritdoc
