@@ -3,7 +3,8 @@
 namespace app\controllers;
 
 use app\core\base\BaseController;
-use app\models\User;
+use app\models\LoginForm;
+use app\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -52,14 +53,16 @@ class SiteController extends BaseController
         return $this->render('index');
     }
 
+    /**用户登录
+     * @return string|\yii\web\Response
+     */
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
-        $model = new User();
-        $model->scenario = 'login';
+        $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
@@ -67,6 +70,25 @@ class SiteController extends BaseController
                 'model' => $model,
             ]);
         }
+    }
+
+    /**用户注册
+     * @return string|\yii\web\Response
+     */
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 
     public function actionLogout()

@@ -11,6 +11,16 @@ class LoginForm extends BaseModel
     public $password;
     public $rememberMe = true;
     private $_user = false;
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => '用户名',
+            'password' => '密码',
+            'rememberMe' => '记住我'
+        ];
+    }
+
     /**
      * @return array the validation rules.
      */
@@ -37,7 +47,7 @@ class LoginForm extends BaseModel
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, '用户名或密码错误。');
             }
         }
     }
