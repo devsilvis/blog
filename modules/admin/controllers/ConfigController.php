@@ -2,6 +2,8 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\config\BasicConfig;
+use app\models\config\ThemeConfig;
 use Yii;
 use app\models\Config;
 use app\models\search\ConfigSearch;
@@ -18,7 +20,7 @@ class ConfigController extends BaseBackController
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class'   => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
                 ],
@@ -36,8 +38,46 @@ class ConfigController extends BaseBackController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
+            'searchModel'  => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**网站基本设置
+     * @return string
+     */
+    public function actionBasic()
+    {
+        $model = new BasicConfig();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->validate()) {
+                // form inputs are valid, do something here
+                return;
+            }
+        }
+
+        return $this->render('basic', [
+            'model' => $model,
+        ]);
+    }
+
+    /**网站主题设置
+     * @return string
+     */
+    public function actionTheme()
+    {
+        $model = new ThemeConfig();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->validate()) {
+                // form inputs are valid, do something here
+                return;
+            }
+        }
+
+        return $this->render('theme', [
+            'model' => $model,
         ]);
     }
 

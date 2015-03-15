@@ -12,6 +12,6 @@ class AdminModule extends BaseModule
     {
         parent::init();
 
-        // custom initialization code goes here
+        $this->layout = 'main';
     }
 }
